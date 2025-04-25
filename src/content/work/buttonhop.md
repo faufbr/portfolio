@@ -5,4 +5,4 @@ dateStart: "01/06/2025"
 dateEnd: "02/14/2025"
 ---
 
-Sit amet consectetur adipisicing elit. Iure illo neque tempora, voluptatem est quaerat voluptas praesentium ipsa dolorem dignissimos nulla ratione distinctio quae maiores eligendi nostrum? Quibusdam, debitis voluptatum, lorem ipsum dolor.
+J'ai participé à l'amélioration du serveur de l'entreprise en étant chargée de gérer des tickets de correction de bugs, d'améliorations et de modifications demandées par l'équipe de développeurs. J'ai eu l'occasion d'apprendre le framework PHP Symfony pendant ce stage.

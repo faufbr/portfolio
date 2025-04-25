@@ -23,6 +23,22 @@ const work = await Promise.all(
   })
 );
 
+const allEducation = (await getCollection("education"))
+  .sort((a, b) => new Date(b.data.dateStart).valueOf() - new Date(a.data.dateStart).valueOf())
+  .slice(0,SITE.NUM_EDUCATION_ON_HOMEPAGE);
+
+const education = await Promise.all(
+  allEducation.map(async (item) => {
+    const { Content } = await item.render();
+    return { ...item, Content };
+  })
+);
+
+//Vérif si aucune donnée dans education
+if (!education || education.length === 0) {
+  console.warn("Aucune donnée trouvée pour la collection 'education'.");
+}
+
 ---
 
 <PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
@@ -45,6 +61,7 @@ const work = await Promise.all(
         </article>
       </section>
 
+      <!-- Section Expérience professionnelle -->
       <section class="animate space-y-6">
         <div class="flex flex-wrap gap-y-2 items-center justify-between">
           <h5 class="font-semibold text-black dark:text-white">
@@ -65,6 +82,36 @@ const work = await Promise.all(
               </div>
               <div class="text-sm opacity-75">
                 {entry.data.role}
+              </div>
+              <article>
+                <entry.Content />
+              </article>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- Nouvelle section Formation -->
+      <section class="animate space-y-6">
+        <div class="flex flex-wrap gap-y-2 items-center justify-between">
+          <h5 class="font-semibold text-black dark:text-white">
+            Formation
+          </h5>
+          <Link href="/education">
+            Voir tout
+          </Link>
+        </div>
+        <ul class="flex flex-col space-y-4">
+          {education.map(entry => (
+            <li>
+              <div class="text-sm opacity-75">
+                {dateRange(entry.data.dateStart, entry.data.dateEnd)}
+              </div>
+              <div class="font-semibold text-black dark:text-white">
+                {entry.data.institution}
+              </div>
+              <div class="text-sm opacity-75">
+                {entry.data.program}
               </div>
               <article>
                 <entry.Content />
