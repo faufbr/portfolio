@@ -1,76 +1,34 @@
 ---
-title: "Astro Sphere"
-description: "Portfolio and blog build with astro."
-date: "Mar 18 2024"
-demoURL: "https://astro-sphere-demo.vercel.app"
-repoURL: "https://github.com/markhorn-dev/astro-sphere"
+title: "Application de notes Memoa"
+description: "Application de prise de notes."
+date: "Apr 26 2025"
+repoURL: "https://github.com/lmbexe/memoa"
 ---
 
-![Astro Sphere Lighthouse Score](/astro-sphere.jpg)
+<!-- ![Astro Sphere Lighthouse Score](/astro-sphere.jpg) -->
 
-Astro Sphere is a static, minimalist, lightweight, lightning fast portfolio and blog theme based on my personal website.
+Memoa est une application de prise de notes web, codée en PHP et Vue.js et réalisée de A à Z en binôme avec <a aria-label="Louis-Marie Bouchet" href="https://github.com/lmbexe">Louis-Marie Bouchet</a>.
 
-It is primarily Astro, Tailwind and Typescript, with a very small amount of SolidJS for stateful components.
+Un outil de suivi de projet a été utilisé et nous avons réalisé une <a href="https://www.figma.com/design/NZeU0BEwYHnTNFXSmdjEuu/Note-app-maquette?node-id=0-1&t=TEPvOFtHtEbWDh6Y-1">maquette</a> en amont.
 
-## 🚀 Deploy your own
+## 📋 Fonctionnalités
 
-<div class="flex gap-2">
-  <a target="_blank" aria-label="Deploy with Vercel" href="https://vercel.com/new/clone?repository-url=https://github.com/markhorn-dev/astro-sphere">
-    <img src="/deploy_vercel.svg" />
-  </a>
-  <a target="_blank" aria-label="Deploy with Netlify" href="https://app.netlify.com/start/deploy?repository=https://github.com/markhorn-dev/astro-sphere">
-    <img src="/deploy_netlify.svg" />
-  </a>
-</div>
-
-## 📋 Features
-
-- ✅ 100/100 Lighthouse performance
-- ✅ Responsive
-- ✅ Accessible
-- ✅ SEO-friendly
-- ✅ Typesafe
-- ✅ Minimal style
-- ✅ Light/Dark Theme
-- ✅ Animated UI
-- ✅ Tailwind styling
-- ✅ Auto generated sitemap
-- ✅ Auto generated RSS Feed
-- ✅ Markdown support
-- ✅ MDX Support (components in your markdown)
-- ✅ Searchable content (posts and projects)
-
-## 💯 Lighthouse score
-![Astro Sphere Lighthouse Score](/lighthouse.png)
-
-## 🕊️ Lightweight
-All pages under 100kb (including fonts)
-
-## ⚡︎ Fast
-Rendered in ~40ms on localhost
+- ✅ Création de compte utilisateur
+- ✅ Ajout de tags personnalisés à vos notes
+- ✅ Ajout de notes aux favoris
+- ✅ Possibilité d'épingler vos notes
+- ✅ Tri par date de création
+- ✅ Recherche par titre et par tag
 
 ## 📄 Configuration
 
-The blog posts on the demo serve as the documentation and configuration.
+Le Readme contenant toutes les consignes d'utilisation est disponible dans les fichiers du projet ou sur sa page Github.
 
-## 💻 Commands
+## 💻 Commandes
 
-All commands are run from the root of the project, from a terminal:
+Commandes que vous pouvez taper dans le terminal, une fois placé dans le dossier du projet :
 
-Replace npm with your package manager of choice. `npm`, `pnpm`, `yarn`, `bun`, etc
-
-| Command                   | Action                                           |
+| Commande                  | Action                                           |
 | :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run sync`            | Generates TypeScript types for all Astro modules.|
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-| `npm run lint`            | Run ESLint                                       |
-| `npm run lint:fix`        | Auto-fix ESLint issues                           |
-
-## 🏛️ License
-
-MIT
+| `npm install`             | Installe les dépendances                         |
+| `npm run dev`             | Démarre le serveur de développement en local     |
