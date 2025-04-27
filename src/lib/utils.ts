@@ -34,7 +34,7 @@ export function dateRange(startDate: Date | string, endDate?: Date | string): st
   let endMonth = "";
   let endYear = "";
 
-  if (endDate) {
+  if (endDate instanceof Date) {
     endMonth = endDate.toLocaleString("default", { month: "short" });
     endYear = endDate.getFullYear().toString();
   }
