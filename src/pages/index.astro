@@ -39,6 +39,8 @@ if (!education || education.length === 0) {
   console.warn("Aucune donnée trouvée pour la collection 'education'.");
 }
 
+const veille = (await getCollection("veille"))
+  .slice(0, 2);
 ---
 
 <PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
@@ -102,7 +104,7 @@ if (!education || education.length === 0) {
         </ul>
       </section>
 
-      <!-- Nouvelle section Formation -->
+      <!-- Section Formation -->
       <section class="animate space-y-6">
         <div class="flex flex-wrap gap-y-2 items-center justify-between">
           <h5 class="font-semibold text-black dark:text-white">
@@ -132,6 +134,7 @@ if (!education || education.length === 0) {
         </ul>
       </section>
 
+      <!-- Section Projets -->
       <section class="animate space-y-6">
         <div class="flex flex-wrap gap-y-2 items-center justify-between">
           <h5 class="font-semibold text-black dark:text-white">
@@ -145,6 +148,30 @@ if (!education || education.length === 0) {
           {projects.map(project => (
             <li>
               <ArrowCard entry={project} />
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- Section Veille -->
+      <section class="animate space-y-6">
+        <div class="flex flex-wrap gap-y-2 items-center justify-between">
+          <h5 class="font-semibold text-black dark:text-white">
+            Veille
+          </h5>
+          <Link href="/veille">
+            Voir tout
+          </Link>
+        </div>
+        <ul class="flex flex-col space-y-4">
+          {veille.map(entry => (
+            <li>
+              <div class="font-semibold text-black dark:text-white">
+                {entry.data.title}
+              </div>
+              <p class="text-gray-600 dark:text-gray-400">
+                {entry.data.description}
+              </p>
             </li>
           ))}
         </ul>

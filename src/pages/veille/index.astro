@@ -1,0 +1,36 @@
+---
+// filepath: c:\wamp64\www\portfolio_v2\portfolio_v2\src\pages\veille.astro
+import { getCollection } from "astro:content";
+import Container from "@components/Container.astro";
+import PageLayout from "@layouts/PageLayout.astro";
+
+const veille = await Promise.all(
+  (await getCollection("veille")).map(async (item) => {
+    const { Content } = await item.render();
+    return { ...item, Content };
+  })
+);
+---
+
+<PageLayout title="Veille" description="Découvrez mes recherches et observations.">
+  <Container>
+    <h1 class="text-2xl font-bold text-black dark:text-white mb-6">
+      Veilles technologiques
+    </h1>
+    <ul class="space-y-6">
+      {veille.map(entry => (
+        <li>
+          <h2 class="text-xl font-semibold text-black dark:text-white">
+            {entry.data.title}
+          </h2>
+          <p class="text-gray-600 dark:text-gray-400">
+            {entry.data.description}
+          </p>
+          <article>
+            <entry.Content />
+          </article>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</PageLayout>
