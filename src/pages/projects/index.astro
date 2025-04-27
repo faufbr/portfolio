@@ -5,9 +5,12 @@ import Container from "@components/Container.astro";
 import ArrowCard from "@components/ArrowCard.astro";
 import { PROJECTS } from "@consts";
 
-const projects = (await getCollection("projects"))
-  .filter(project => !project.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+import type { CollectionEntry } from "astro:content";
+
+// Typage explicite des projets
+const projects: CollectionEntry<"projects">[] = (await getCollection("projects"))
+  .filter((project: CollectionEntry<"projects">) => !project.data.draft) // Typage de project
+  .sort((a: CollectionEntry<"projects">, b: CollectionEntry<"projects">) => b.data.date.valueOf() - a.data.date.valueOf()); // Typage de a et b
 ---
 
 <PageLayout title={PROJECTS.TITLE} description={PROJECTS.DESCRIPTION}>
@@ -17,13 +20,11 @@ const projects = (await getCollection("projects"))
         Projets
       </div>
       <ul class="animate flex flex-col gap-4">
-        {
-          projects.map((project) => (
-            <li>
-              <ArrowCard entry={project}/>
-            </li>
-          ))
-        }
+        {projects.map((project: CollectionEntry<"projects">) => (
+          <li>
+            <ArrowCard entry={project} />
+          </li>
+        ))}
       </ul>
     </div>
   </Container>

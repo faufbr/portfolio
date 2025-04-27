@@ -7,39 +7,41 @@ import Link from "@components/Link.astro";
 import { dateRange } from "@lib/utils";
 import { SITE, HOME, SOCIALS } from "@consts";
 
-const projects = (await getCollection("projects"))
-  .filter(project => !project.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0,SITE.NUM_PROJECTS_ON_HOMEPAGE);
+import type { CollectionEntry } from "astro:content";
 
-const allwork = (await getCollection("work"))
-  .sort((a, b) => new Date(b.data.dateStart).valueOf() - new Date(a.data.dateStart).valueOf())
-  .slice(0,SITE.NUM_WORKS_ON_HOMEPAGE);
+const projects: CollectionEntry<"projects">[] = (await getCollection("projects"))
+  .filter((project: CollectionEntry<"projects">) => !project.data.draft)
+  .sort((a: CollectionEntry<"projects">, b: CollectionEntry<"projects">) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, SITE.NUM_PROJECTS_ON_HOMEPAGE);
+
+const allwork: CollectionEntry<"work">[] = (await getCollection("work"))
+  .sort((a: CollectionEntry<"work">, b: CollectionEntry<"work">) => new Date(b.data.dateStart).valueOf() - new Date(a.data.dateStart).valueOf())
+  .slice(0, SITE.NUM_WORKS_ON_HOMEPAGE);
 
 const work = await Promise.all(
-  allwork.map(async (item) => {
+  allwork.map(async (item: CollectionEntry<"work">) => {
     const { Content } = await item.render();
     return { ...item, Content };
   })
 );
 
-const allEducation = (await getCollection("education"))
-  .sort((a, b) => new Date(b.data.dateStart).valueOf() - new Date(a.data.dateStart).valueOf())
-  .slice(0,SITE.NUM_EDUCATION_ON_HOMEPAGE);
+const allEducation: CollectionEntry<"education">[] = (await getCollection("education"))
+  .sort((a: CollectionEntry<"education">, b: CollectionEntry<"education">) => new Date(b.data.dateStart).valueOf() - new Date(a.data.dateStart).valueOf())
+  .slice(0, SITE.NUM_EDUCATION_ON_HOMEPAGE);
 
 const education = await Promise.all(
-  allEducation.map(async (item) => {
+  allEducation.map(async (item: CollectionEntry<"education">) => {
     const { Content } = await item.render();
     return { ...item, Content };
   })
 );
 
-//Vérif si aucune donnée dans education
+// Vérif si aucune donnée dans education
 if (!education || education.length === 0) {
   console.warn("Aucune donnée trouvée pour la collection 'education'.");
 }
 
-const veille = (await getCollection("veille"))
+const veille: CollectionEntry<"veille">[] = (await getCollection("veille"))
   .slice(0, 2);
 ---
 
@@ -85,7 +87,7 @@ const veille = (await getCollection("veille"))
           </Link>
         </div>
         <ul class="flex flex-col space-y-4">
-          {work.map(entry => (
+          {work.map((entry) => (
             <li>
               <div class="text-sm opacity-75">
                 {dateRange(entry.data.dateStart, entry.data.dateEnd)}
@@ -115,7 +117,7 @@ const veille = (await getCollection("veille"))
           </Link>
         </div>
         <ul class="flex flex-col space-y-4">
-          {education.map(entry => (
+          {education.map((entry) => (
             <li>
               <div class="text-sm opacity-75">
                 {dateRange(entry.data.dateStart, entry.data.dateEnd)}
@@ -140,12 +142,12 @@ const veille = (await getCollection("veille"))
           <h5 class="font-semibold text-black dark:text-white">
             Projets
           </h5>
-          <Link href="/projects">
+          <Link href="/portfolio/projects">
             Voir tout
           </Link>
         </div>
         <ul class="flex flex-col gap-4">
-          {projects.map(project => (
+          {projects.map((project) => (
             <li>
               <ArrowCard entry={project} />
             </li>
@@ -164,7 +166,7 @@ const veille = (await getCollection("veille"))
           </Link>
         </div>
         <ul class="flex flex-col space-y-4">
-          {veille.map(entry => (
+          {veille.map((entry) => (
             <li>
               <div class="font-semibold text-black dark:text-white">
                 {entry.data.title}
@@ -188,7 +190,7 @@ const veille = (await getCollection("veille"))
           </p>
         </article>
         <ul class="flex flex-wrap gap-2">
-          {SOCIALS.map(SOCIAL => (
+          {SOCIALS.map((SOCIAL) => (
             <li class="flex gap-x-2 text-nowrap">
               <Link href={SOCIAL.HREF} external aria-label={`${SITE.NAME} on ${SOCIAL.NAME}`}>
                 {SOCIAL.NAME}

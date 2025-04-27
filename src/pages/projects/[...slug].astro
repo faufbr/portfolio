@@ -8,24 +8,25 @@ import BackToPrev from "@components/BackToPrev.astro";
 import Link from "@components/Link.astro";
 
 export async function getStaticPaths() {
-  const projects = (await getCollection("projects"))
-    .filter(post => !post.data.draft)
-    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-  return projects.map((project) => ({
+  const projects: CollectionEntry<"projects">[] = (await getCollection("projects"))
+    .filter((post: CollectionEntry<"projects">) => !post.data.draft) // Typage de `post`
+    .sort((a: CollectionEntry<"projects">, b: CollectionEntry<"projects">) => b.data.date.valueOf() - a.data.date.valueOf()); // Typage de `a` et `b`
+  return projects.map((project: CollectionEntry<"projects">) => ({
     params: { slug: project.slug },
     props: project,
   }));
 }
+
 type Props = CollectionEntry<"projects">;
 
-const project = Astro.props;
+const project: Props = Astro.props; // Typage explicite de `project`
 const { Content } = await project.render();
 ---
 
 <PageLayout title={project.data.title} description={project.data.description}>
   <Container>
     <div class="animate">
-      <BackToPrev href="/projects">
+      <BackToPrev href="/portfolio/projects">
         Retour
       </BackToPrev>
     </div>
