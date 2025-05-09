@@ -1,0 +1,40 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import Container from "@components/Container.astro";
+
+const title = "Mentions légales";
+const description = "Mentions légales du site.";
+---
+
+<PageLayout title={title} description={description}>
+  <Container>
+    <h1 class="font-semibold text-black dark:text-white">{title}</h1><br>
+    <p class="mt-4 font-semibold">
+      Edition du site
+    </p><br>
+    <p>
+        Le présent site, accessible à l’URL https://faufbr.github.io/portfolio/ , est édité par :<br>
+        Faustine Fabre, résidant 1 venelle du Thouet, 44000 NANTES, de nationalité Française (France), née le 13/03/2003.
+    </p>
+    <p class="mt-4 font-semibold">
+        Hébergement
+    </p><br>
+    <p>
+        Le site est hébergé par :<br>
+        GitHub Pages, 88 Colin P Kelly Jr St, San Francisco, CA 94107, États-Unis.
+    </p>
+    <p class="mt-4 font-semibold">
+        Directrice de la publication
+    </p><br>
+    <p>
+        La directrice de la publication du site est Faustine Fabre.
+    </p>
+    <p class="mt-4 font-semibold">
+        Contact
+    </p><br>
+    <p>
+        Par email : faustine.fabre44@gmail.com<br>
+        Par courrier : 1 venelle du Thouet, 44000 NANTES
+    </p>
+  </Container>
+</PageLayout>
