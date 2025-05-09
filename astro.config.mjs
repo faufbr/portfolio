@@ -4,7 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
-  site: "https://faufbr.github.io",
+  site: "https://faufbr.github.io/portfolio",
   base: "/portfolio",
   integrations: [mdx(), sitemap(), tailwind()],
 });
